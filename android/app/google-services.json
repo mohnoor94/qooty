@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "638956020672",
+    "firebase_url": "https://qooty-akf.firebaseio.com",
+    "project_id": "qooty-akf",
+    "storage_bucket": "qooty-akf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:638956020672:android:3573cff8e8b7e86f9e5e25",
+        "android_client_info": {
+          "package_name": "com.abukhleif.qooty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "638956020672-vsor4d4a4poqar9h8377r06gj1v161ls.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjUkVdxeK1kJWRSXhPG_-y-vAgTuOREG0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "638956020672-vsor4d4a4poqar9h8377r06gj1v161ls.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "638956020672-4fbm1ar7hs7rv7r0mlut23v2g66j74lr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.abukhleif.qooty"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
