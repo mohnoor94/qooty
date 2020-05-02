@@ -1,7 +1,9 @@
 import 'package:flutter/painting.dart';
+import 'package:qooty/values/colors.dart';
 
 class Styles {
-  static const quoteTextStyle = TextStyle(
+  static final quoteTextStyle = TextStyle(
+    color: AppColors.main,
     fontSize: 30.0,
     fontFamily: 'Economica',
   );

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:qooty/app/app_state.dart';
+import 'package:qooty/values/color_plate.dart';
+import 'package:qooty/values/colors.dart';
 import 'package:qooty/widgets/drawer_item.dart';
 
 class MenuDrawer extends StatelessWidget {
@@ -14,19 +17,39 @@ class MenuDrawer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               DrawerItem(
-                text: 'Favorites',
+                text: 'Black in White',
                 onPressed: () {
-                  Navigator.pop(context);
+                  AppColors.update(ColorPlate.blackInWhite);
                 },
               ),
               DrawerItem(
-                text: 'Settings',
+                text: 'White in Black',
+                onPressed: () {
+                  AppColors.update(ColorPlate.whiteInBlack);
+                },
+              ),
+              DrawerItem(
+                text: 'Blue in White',
                 onPressed: () {},
               ),
               DrawerItem(
-                text: 'About Us',
+                text: 'White in Blue',
                 onPressed: () {},
               ),
+//              DrawerItem(
+//                text: 'Favorites',
+//                onPressed: () {
+//                  Navigator.pop(context);
+//                },
+//              ),
+//              DrawerItem(
+//                text: 'Settings',
+//                onPressed: () {},
+//              ),
+//              DrawerItem(
+//                text: 'About Us',
+//                onPressed: () {},
+//              ),
             ],
           ),
         ),

@@ -12,8 +12,8 @@ class DataManager {
   static Future<User> registerUser(String uid) async {
     final ref = usersCollection.document(uid);
     await ref.setData(
-      {UserKeys.uid: uid, UserKeys.likes: []},
-//      merge: true,
+      {UserKeys.uid: uid},
+      merge: true,
     );
     final snapshot = await ref.get();
     _user = User.fromDocumentSnapshot(snapshot);

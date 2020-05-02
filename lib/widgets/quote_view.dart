@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qooty/models/quote.dart';
+import 'package:qooty/values/colors.dart';
 
 class QuoteView extends StatelessWidget {
   const QuoteView({
@@ -25,6 +26,7 @@ class QuoteView extends StatelessWidget {
                 child: Text(
                   quote.text,
                   style: TextStyle(
+                    color: AppColors.main,
                     fontSize: fontSize,
                     fontFamily: 'Economica',
                     fontWeight: FontWeight.bold,
@@ -36,6 +38,7 @@ class QuoteView extends StatelessWidget {
                 '- ${quote.writer}',
                 textAlign: TextAlign.end,
                 style: TextStyle(
+                  color: AppColors.main,
                   fontSize: fontSize / 2,
                   fontFamily: 'Economica',
                 ),

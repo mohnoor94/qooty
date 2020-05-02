@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qooty/models/quote.dart';
+import 'package:qooty/values/colors.dart';
 
 class QuoteListItem extends StatelessWidget {
   const QuoteListItem({
@@ -20,7 +21,7 @@ class QuoteListItem extends StatelessWidget {
       margin: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.white,
+          color: AppColors.main,
         ),
         borderRadius: BorderRadius.only(bottomRight: Radius.circular(20), topLeft: Radius.circular(20)),
       ),
@@ -34,6 +35,7 @@ class QuoteListItem extends StatelessWidget {
                   child: Text(
                     quote.text,
                     style: TextStyle(
+                      color: AppColors.main,
                       fontSize: fontSize,
                       fontFamily: 'Economica',
                       fontWeight: FontWeight.bold,
@@ -49,6 +51,7 @@ class QuoteListItem extends StatelessWidget {
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
+                        color: AppColors.main,
                         fontSize: fontSize / 2,
                         fontFamily: 'Economica',
                       ),
@@ -56,7 +59,10 @@ class QuoteListItem extends StatelessWidget {
                   ],
                 ),
                 IconButton(
-                  icon: Icon(CupertinoIcons.clear_circled),
+                  icon: Icon(
+                    CupertinoIcons.clear_circled,
+                    color: AppColors.main,
+                  ),
                   onPressed: () {},
                 ),
               ],

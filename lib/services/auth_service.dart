@@ -7,8 +7,11 @@ class AuthService {
   static User _user;
 
   static Future<User> signInAnonymously() async {
-    if (_user != null) return _user;
+    if (_isSignedIn()) return _user;
     try {
+      _user = User.fromFirebaseUser(await _auth.currentUser());
+      if (_isSignedIn()) return _user;
+
       final result = await _auth.signInAnonymously();
       _user = User.fromFirebaseUser(result.user);
       return _user;
@@ -24,4 +27,6 @@ class AuthService {
     _user = null;
     return await _auth.signOut();
   }
+
+  static bool _isSignedIn() => _user != null && _user.id != null;
 }

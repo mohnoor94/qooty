@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:qooty/helpers/utils.dart';
 import 'package:qooty/values/keys.dart';
 
 class User {
@@ -41,9 +42,6 @@ class User {
   static User fromDocumentSnapshot(DocumentSnapshot snapshot) {
     if (snapshot == null || snapshot.data == null) return null;
 
-    var likes = snapshot.data[UserKeys.likes];
-    likes = likes == null || (likes is List && likes.length == 0) ? List<int>() : likes;
-
     return User(
       id: snapshot.data[UserKeys.uid],
       name: snapshot.data[UserKeys.name],
@@ -51,11 +49,12 @@ class User {
       email: snapshot.data[UserKeys.email],
       twitter: snapshot.data[UserKeys.twitter],
       deactivated: snapshot.data[UserKeys.deactivated],
-      likes: likes,
+      likes: insureInts(snapshot.data[UserKeys.likes]),
     );
   }
 
   void likeQuote(int quoteId) => likes.add(quoteId);
+
   void unlikeQuote(int quoteId) => likes.remove(quoteId);
 
   @override

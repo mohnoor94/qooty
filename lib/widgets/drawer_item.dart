@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qooty/values/colors.dart';
 
 class DrawerItem extends StatelessWidget {
   final String text;
@@ -13,8 +14,8 @@ class DrawerItem extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-          color: Colors.black,
-          fontSize: 40.0,
+          color: AppColors.background,
+          fontSize: 30.0,
           fontFamily: 'Economica',
           fontWeight: FontWeight.bold,
         ),

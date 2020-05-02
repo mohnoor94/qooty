@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qooty/app/app_state.dart';
+import 'package:qooty/values/colors.dart';
 
 class UiHelpers {
   static void info(BuildContext context, String text) {
@@ -7,11 +8,11 @@ class UiHelpers {
     Scaffold.of(context).showSnackBar(
       SnackBar(
         duration: Duration(seconds: 2),
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.background,
         content: Text(
           text,
           textAlign: AppState.notificationsAlign,
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: AppColors.main),
         ),
       ),
     );

@@ -6,6 +6,7 @@ import 'package:qooty/app/app_state.dart';
 import 'package:qooty/helpers/drawer.dart';
 import 'package:qooty/models/user.dart';
 import 'package:qooty/notifiers/quotes_notifier.dart';
+import 'package:qooty/values/colors.dart';
 import 'package:qooty/values/styles.dart';
 import 'package:qooty/widgets/bottom_navigation_bar.dart';
 import 'package:qooty/widgets/hideable_icon.dart';
@@ -45,27 +46,28 @@ class _QuotesScreenState extends State<QuotesScreen> {
         child: MenuDrawer(),
       ),
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Colors.black,
+        backgroundColor: AppColors.background,
+        color: AppColors.main,
         height: 50.0,
         items: <Widget>[
           Icon(
             CupertinoIcons.book_solid,
             size: 30,
-            color: Colors.black,
+            color: AppColors.background,
           ),
           Icon(
             Icons.favorite,
             size: 30,
-            color: Colors.black,
+            color: AppColors.background,
           ),
         ],
         onTap: (index) {
           setState(() {
-            AppState.toggelPage();
+            AppState.page = index == 0? Page.main : Page.likes;
           });
         },
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.background,
       body: Builder(
         builder: (BuildContext context) => SafeArea(
           child: Container(
@@ -113,7 +115,7 @@ class _QuotesScreenState extends State<QuotesScreen> {
           icon: Icon(
             _focusMode ? Icons.visibility : Icons.visibility_off,
             size: 20.0,
-            color: _focusMode ? Colors.white.withAlpha(75) : Colors.white,
+            color: _focusMode ? AppColors.main.withAlpha(75) : AppColors.main,
           ),
           tooltip: 'Focuse Mode',
           onPressed: () => setState(() => _focusMode = !_focusMode),
@@ -128,7 +130,7 @@ class _QuotesScreenState extends State<QuotesScreen> {
         IconButton(
           icon: Icon(Icons.list, size: 20.0),
           tooltip: 'Menu',
-          color: _focusMode ? Colors.white.withAlpha(75) : Colors.white,
+          color: _focusMode ? AppColors.main.withAlpha(75) : AppColors.main,
           onPressed: () => Scaffold.of(context).openEndDrawer(),
         ),
       ],
