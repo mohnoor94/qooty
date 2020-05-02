@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:qooty/models/quotes_data.dart';
+import 'package:qooty/models/quote.dart';
 
 class QuoteView extends StatelessWidget {
   const QuoteView({
     @required this.fontSize,
+    @required this.quote,
+    this.onTap,
   });
 
   final double fontSize;
+  final GestureTapCallback onTap;
+  final Quote quote;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Provider.of<QuotesData>(context, listen: false).next(),
+      onTap: onTap,
       child: Center(
         child: SingleChildScrollView(
           child: Column(
@@ -20,7 +23,7 @@ class QuoteView extends StatelessWidget {
             children: <Widget>[
               Center(
                 child: Text(
-                  Provider.of<QuotesData>(context).text,
+                  quote.text,
                   style: TextStyle(
                     fontSize: fontSize,
                     fontFamily: 'Economica',
@@ -30,7 +33,7 @@ class QuoteView extends StatelessWidget {
               ),
               SizedBox(height: 10.0),
               Text(
-                '- ${Provider.of<QuotesData>(context).writerName}',
+                '- ${quote.writer}',
                 textAlign: TextAlign.end,
                 style: TextStyle(
                   fontSize: fontSize / 2,

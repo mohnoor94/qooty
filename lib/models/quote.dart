@@ -1,29 +1,35 @@
-class Quote {
-  static int count = 0;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:qooty/values/keys.dart';
 
-  int _id;
-  String text;
-  String writer;
-  bool _loved;
+class Quote {
+  final int id;
+  final String text;
+  final String writer;
+  bool liked;
 
   Quote({
+    this.id,
     this.text,
-    this.writer,
-  })  : _id = ++count,
-        _loved = false;
+    String writer,
+  })  : writer = writer == null ? 'Unknown' : writer,
+        liked = false;
 
-  Quote.loved({
-    this.text,
-    this.writer,
-  })  : _id = ++count,
-        _loved = true;
+  static Quote fromDocumentSnapshot(DocumentSnapshot snapshot) {
+    return snapshot == null || snapshot.data == null
+        ? null
+        : Quote(
+            id: snapshot.data[QuoteKeys.id],
+            text: snapshot.data[QuoteKeys.text],
+            writer: snapshot.data[QuoteKeys.writer],
+          );
+  }
 
-  void love() => _loved = true;
+  String get strId => id.toString();
 
-  int get id => _id;
+  void like() => liked = true;
 
-  bool get loved => _loved;
+  bool toggelLike() => liked = !liked;
 
   @override
-  String toString() => 'Quote{text: $text, writer: $writer}';
+  String toString() => '$text\n\n- $writer';
 }

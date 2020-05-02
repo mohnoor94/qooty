@@ -15,6 +15,9 @@ dependencies:
   firebase_core: ^0.4.4+3
   firebase_auth: ^0.16.0
   cloud_firestore: ^0.13.5
+  flutter_spinkit: ^4.1.2
+  share: ^0.6.4
+  curved_navigation_bar: ^0.3.2
 
 dev_dependencies:
   flutter_test:
