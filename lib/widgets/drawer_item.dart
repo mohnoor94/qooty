@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:qooty/values/colors.dart';
+import 'package:provider/provider.dart';
+import 'package:qooty/notifiers/design_notifier.dart';
 
 class DrawerItem extends StatelessWidget {
   final String text;
@@ -9,16 +10,12 @@ class DrawerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final designer = Provider.of<DesignNotifier>(context);
     return FlatButton(
       padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
       child: Text(
         text,
-        style: TextStyle(
-          color: AppColors.background,
-          fontSize: 30.0,
-          fontFamily: 'Economica',
-          fontWeight: FontWeight.bold,
-        ),
+        style: designer.textStyler(color: designer.colors.second),
       ),
       onPressed: onPressed,
     );

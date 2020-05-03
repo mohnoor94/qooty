@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:qooty/app/app_state.dart';
-import 'package:qooty/values/colors.dart';
+import 'package:provider/provider.dart';
+import 'package:qooty/notifiers/design_notifier.dart';
+import 'package:qooty/values/constants.dart';
 
 class UiHelpers {
-  static void info(BuildContext context, String text) {
-    print(AppState.notificationsAlign);
+  static void info({
+    @required BuildContext context,
+    @required String text,
+  }) {
+    final designer = Provider.of<DesignNotifier>(context, listen: false);
     Scaffold.of(context).showSnackBar(
       SnackBar(
         duration: Duration(seconds: 2),
-        backgroundColor: AppColors.background,
+        backgroundColor: designer.colors.second,
         content: Text(
           text,
-          textAlign: AppState.notificationsAlign,
-          style: TextStyle(color: AppColors.main),
+          textAlign: designer.notificationsAlign,
+          style: designer.textStyler(fontSize: kNotificationsFontSize),
         ),
       ),
     );

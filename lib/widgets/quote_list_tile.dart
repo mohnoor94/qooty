@@ -1,73 +1,35 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:qooty/models/quote.dart';
-import 'package:qooty/values/colors.dart';
+import 'package:qooty/notifiers/design_notifier.dart';
 
 class QuoteListItem extends StatelessWidget {
   const QuoteListItem({
-    @required this.fontSize,
     @required this.quote,
     this.onTap,
   });
 
-  final double fontSize;
   final GestureTapCallback onTap;
   final Quote quote;
 
   @override
   Widget build(BuildContext context) {
+    final designer = Provider.of<DesignNotifier>(context);
     return Container(
-      padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-      margin: EdgeInsets.all(10.0),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: AppColors.main,
-        ),
-        borderRadius: BorderRadius.only(bottomRight: Radius.circular(20), topLeft: Radius.circular(20)),
-      ),
+      padding: EdgeInsets.only(top: 10.0),
       child: GestureDetector(
         onTap: onTap,
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                Center(
-                  child: Text(
-                    quote.text,
-                    style: TextStyle(
-                      color: AppColors.main,
-                      fontSize: fontSize,
-                      fontFamily: 'Economica',
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 10.0),
-                Row(
-                  children: <Widget>[
-                    Expanded(child: SizedBox()),
-                    Text(
-                      '- ${quote.writer}',
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color: AppColors.main,
-                        fontSize: fontSize / 2,
-                        fontFamily: 'Economica',
-                      ),
-                    ),
-                  ],
-                ),
-                IconButton(
-                  icon: Icon(
-                    CupertinoIcons.clear_circled,
-                    color: AppColors.main,
-                  ),
-                  onPressed: () {},
-                ),
-              ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              quote.text,
+              style: designer.textStyler(fontWeight: FontWeight.bold),
             ),
-          ),
+            SizedBox(height: 10.0),
+            Divider(color: designer.colors.first.withOpacity(0.5)),
+          ],
         ),
       ),
     );

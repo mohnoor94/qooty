@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:qooty/app/app_state.dart';
-import 'package:qooty/values/color_plate.dart';
-import 'package:qooty/values/colors.dart';
 import 'package:qooty/widgets/drawer_item.dart';
 
 class MenuDrawer extends StatelessWidget {
@@ -19,13 +16,11 @@ class MenuDrawer extends StatelessWidget {
               DrawerItem(
                 text: 'Black in White',
                 onPressed: () {
-                  AppColors.update(ColorPlate.blackInWhite);
                 },
               ),
               DrawerItem(
                 text: 'White in Black',
                 onPressed: () {
-                  AppColors.update(ColorPlate.whiteInBlack);
                 },
               ),
               DrawerItem(
@@ -36,20 +31,6 @@ class MenuDrawer extends StatelessWidget {
                 text: 'White in Blue',
                 onPressed: () {},
               ),
-//              DrawerItem(
-//                text: 'Favorites',
-//                onPressed: () {
-//                  Navigator.pop(context);
-//                },
-//              ),
-//              DrawerItem(
-//                text: 'Settings',
-//                onPressed: () {},
-//              ),
-//              DrawerItem(
-//                text: 'About Us',
-//                onPressed: () {},
-//              ),
             ],
           ),
         ),

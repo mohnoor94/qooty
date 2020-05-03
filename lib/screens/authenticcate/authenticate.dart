@@ -11,8 +11,6 @@ class AuthenticationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     signIn();
-    return Center(
-      child: Loading(),
-    );
+    return Loading();
   }
 }

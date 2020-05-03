@@ -1,47 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:qooty/models/quote.dart';
-import 'package:qooty/values/colors.dart';
+import 'package:qooty/notifiers/design_notifier.dart';
 
 class QuoteView extends StatelessWidget {
   const QuoteView({
-    @required this.fontSize,
     @required this.quote,
     this.onTap,
   });
 
-  final double fontSize;
   final GestureTapCallback onTap;
   final Quote quote;
 
   @override
   Widget build(BuildContext context) {
+    final designer = Provider.of<DesignNotifier>(context);
     return GestureDetector(
       onTap: onTap,
-      child: Center(
+      child: Align(
+        alignment: Alignment.centerLeft,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
-              Center(
-                child: Text(
-                  quote.text,
-                  style: TextStyle(
-                    color: AppColors.main,
-                    fontSize: fontSize,
-                    fontFamily: 'Economica',
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+              Text(
+                quote.text,
+                style: designer.textStyler(fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10.0),
               Text(
                 '- ${quote.writer}',
                 textAlign: TextAlign.end,
-                style: TextStyle(
-                  color: AppColors.main,
-                  fontSize: fontSize / 2,
-                  fontFamily: 'Economica',
-                ),
+                style: designer.textStyler(fontSize: designer.fontSize / 2),
               ),
             ],
           ),
