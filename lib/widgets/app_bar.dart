@@ -28,7 +28,7 @@ class QootyAppBar extends StatelessWidget {
           ),
         ),
         IconButton(
-          icon: designer.smallICon(Icons.list),
+          icon: designer.uncoloredSmallICon(Icons.list),
           tooltip: Messages.menu,
           color: designer.focusMode ? designer.colors.first.withOpacity(0.25) : designer.colors.first,
           onPressed: () => Scaffold.of(context).openEndDrawer(),

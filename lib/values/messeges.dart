@@ -13,4 +13,7 @@ class Messages {
   static const String decreaseFontSize = 'Decrease Font Size';
   static const String increaseFontSize = 'Increase Font Size';
   static const String resetFontSize = 'Reset Font Size';
+
+  static const String notConnected =
+      'Something wrong 😔\nI cannot load 😢💔\n\nPlease make sure you are connected to the internet 🥺';
 }

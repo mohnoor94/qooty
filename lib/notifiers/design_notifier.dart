@@ -60,4 +60,7 @@ class DesignNotifier extends ChangeNotifier {
 
   Icon invertedSmallICon(IconData icon) => Icon(icon, size: smallIconSize, color: colors.second);
   Icon invertedMediumIcon(IconData icon) => Icon(icon, size: mediumIconSize, color: colors.second);
+
+  Icon uncoloredSmallICon(IconData icon) => Icon(icon, size: smallIconSize);
+  Icon uncoloredMediumIcon(IconData icon) => Icon(icon, size: mediumIconSize);
 }
