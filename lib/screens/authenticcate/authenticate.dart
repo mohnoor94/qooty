@@ -24,14 +24,12 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> with Single
   void initState() {
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 6),
+      duration: Duration(seconds: 10),
     );
     _animation = Tween(begin: 0.0, end: 1.0).animate(_controller);
 
-    Future.delayed(Duration(seconds: 3), () {
-      setState(() {
-        _showConnectionMessage = true;
-      });
+    Future.delayed(Duration(seconds: 5), () {
+      if (this.mounted) setState(() => _showConnectionMessage = true);
     });
     super.initState();
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:qooty/designer/color_plate.dart';
 import 'package:qooty/designer/theme_base.dart';
 import 'package:qooty/designer/theme_builder.dart';
+import 'package:qooty/notifiers/app_state.dart';
 
 // Fonts
 const double kDefaultFontSize = 30;
@@ -20,9 +21,12 @@ const double kBigIconSize = 50;
 const double kBottomNavBarHeight = 50;
 
 // Themes
-const ColorPlate kDefaultColorPlate = ColorPlate.whiteInBlue;
+const ColorPlate kDefaultColorPlate = ColorPlate.blackInOrange;
 final ThemeData kDefaultTheme = ThemeBuilder.build(
   base: ThemeBase.light,
   plate: kDefaultColorPlate,
   fontSize: kDefaultFontSize,
 );
+
+// App State
+const Page kDefaultPage = Page.quote;

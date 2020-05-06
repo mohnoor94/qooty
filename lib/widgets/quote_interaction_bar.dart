@@ -18,11 +18,8 @@ class _QuoteInteractionBarState extends State<QuoteInteractionBar> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Why 2?
-    final quotesNotifier = Provider.of<QuotesNotifier>(context, listen: false);
-    final quotesNotifierListener = Provider.of<QuotesNotifier>(context);
-    final designer = Provider.of<DesignNotifier>(context);
-    _isLiked = quotesNotifierListener.isLiked;
+    final quotesNotifier = Provider.of<QuotesNotifier>(context);
+    _isLiked = quotesNotifier.isLiked;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -42,8 +39,8 @@ class _QuoteInteractionBarState extends State<QuoteInteractionBar> {
           icon: _isLiked ? Icons.favorite : Icons.favorite_border,
           tooltip: _isLiked ? Messages.unlike : Messages.like,
           onPressed: () async {
-            await quotesNotifierListener.toggleLike();
-            setState(() => _isLiked = quotesNotifierListener.isLiked);
+            await quotesNotifier.toggleLike();
+            setState(() => _isLiked = quotesNotifier.isLiked);
             UiHelpers.info(
               context: context,
               text: _isLiked ? Messages.addedToLikes : Messages.removedFromLikes,

@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qooty/helpers/drawer.dart';
 import 'package:qooty/models/user.dart';
+import 'package:qooty/notifiers/app_state.dart';
 import 'package:qooty/notifiers/design_notifier.dart';
 import 'package:qooty/notifiers/quotes_notifier.dart';
 import 'package:qooty/values/styles.dart';
 import 'package:qooty/widgets/app_bar.dart';
 import 'package:qooty/widgets/bottom_nav_bar.dart';
 import 'package:qooty/widgets/font_controller_bar.dart';
-import 'package:qooty/widgets/quote_interaction_bar.dart';
 import 'package:qooty/widgets/loading.dart';
 import 'package:qooty/widgets/menu_drawer.dart';
+import 'package:qooty/widgets/quote_interaction_bar.dart';
 import 'package:qooty/widgets/quote_list_tile.dart';
 import 'package:qooty/widgets/quote_view.dart';
 
@@ -22,7 +23,6 @@ class QuotesScreen extends StatefulWidget {
 
 class _QuotesScreenState extends State<QuotesScreen> {
   bool _dataLoaded = false;
-  int _page = 0;
 
   @override
   void initState() {
@@ -41,14 +41,13 @@ class _QuotesScreenState extends State<QuotesScreen> {
   Widget build(BuildContext context) {
     final designer = Provider.of<DesignNotifier>(context);
     final quotes = Provider.of<QuotesNotifier>(context);
+    final appState = Provider.of<AppState>(context);
     return Scaffold(
       endDrawer: ClipPath(
         clipper: RightDrawerClipper(),
         child: MenuDrawer(),
       ),
-      bottomNavigationBar: BottomNavBar(
-        onTap: (int index) => setState(() => _page = index),
-      ),
+      bottomNavigationBar: BottomNavBar(onTap: appState.setPageByIndex),
       backgroundColor: designer.colors.second,
       body: Builder(
         builder: (BuildContext context) => SafeArea(
@@ -63,11 +62,14 @@ class _QuotesScreenState extends State<QuotesScreen> {
                   FontControllerBar(),
                   // TODO: Update this MESS!!!
                   Expanded(
-                    child: _page == 0
+                    child: appState.page == Page.quote
                         ? _dataLoaded ? QuoteView(quote: quotes.quote, onTap: quotes.next) : Loading()
-                        : ListView(children: quotes.likes.map((q) => QuoteListItem(quote: q)).toList()),
+                        : ListView.builder(
+                            itemCount: quotes.likes.length,
+                            itemBuilder: (_, index) => QuoteListItem(quote: quotes.likes[index]),
+                          ),
                   ),
-                  _page == 0 && _dataLoaded ? QuoteInteractionBar() : Container(),
+                  appState.page == Page.quote && _dataLoaded ? QuoteInteractionBar() : Container(),
                 ],
               ),
             ),

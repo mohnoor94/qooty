@@ -10,10 +10,12 @@ class QuotesNotifier extends ChangeNotifier {
   static List<Quote> _quotes = [];
 
   UnmodifiableListView<Quote> get quotes => UnmodifiableListView(_quotes);
+
   List<Quote> get likes => _quotes.where((q) => q.liked).toList();
 
   Future<void> loadQuotes() async {
     _quotes = await DataManager.getQuotes();
+    _quotes.sort((first, second) => first.id - second.id);
     next();
   }
 
@@ -24,6 +26,11 @@ class QuotesNotifier extends ChangeNotifier {
 
   void next() {
     _current = Random().nextInt(_quotes.length);
+    notifyListeners();
+  }
+
+  void setQuote(Quote quote) {
+    _current = quote.id;
     notifyListeners();
   }
 

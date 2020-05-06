@@ -6,7 +6,7 @@ import 'package:qooty/notifiers/design_notifier.dart';
 class QuoteView extends StatelessWidget {
   const QuoteView({
     @required this.quote,
-    this.onTap,
+    @required this.onTap,
   });
 
   final GestureTapCallback onTap;
@@ -15,7 +15,9 @@ class QuoteView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final designer = Provider.of<DesignNotifier>(context);
-    return GestureDetector(
+    return InkWell(
+      highlightColor: designer.colors.second,
+      splashColor: designer.colors.first.withOpacity(0.2),
       onTap: onTap,
       child: Align(
         alignment: Alignment.centerLeft,
