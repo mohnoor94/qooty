@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:qooty/designer/color_plate.dart';
 import 'package:qooty/notifiers/design_notifier.dart';
 import 'package:qooty/values/constants.dart';
+import 'package:qooty/values/messeges.dart';
 import 'package:qooty/widgets/app_bar.dart';
 
 class ThemesScreen extends StatelessWidget {
@@ -50,8 +51,8 @@ class ThemesScreen extends StatelessWidget {
                                   alignment: Alignment.center,
                                   child: Text(
                                     plate.name,
-                                    style:
-                                        designer.textStyler(color: plate.colors.first, fontSize: designer.fontSize * .75),
+                                    style: designer.textStyler(
+                                        color: plate.colors.first, fontSize: designer.fontSize * .75),
                                   ),
                                 ),
                               ),
@@ -71,7 +72,7 @@ class ThemesScreen extends StatelessWidget {
                 color: designer.colors.first,
                 onPressed: () => Navigator.pop(context),
                 child: Text(
-                  'Save',
+                  Messages.back,
                   style: designer.textStyler(color: designer.colors.second),
                 ),
               ),

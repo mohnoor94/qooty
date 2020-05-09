@@ -20,6 +20,7 @@ class ThemeBuilder {
       textTheme: TextTheme(
         bodyText2: TextStyle(
           fontSize: fontSize,
+          color: plate.colors.first,
         ),
       ).apply(
         bodyColor: plate.colors.first,

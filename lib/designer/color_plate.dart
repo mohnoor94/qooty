@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qooty/designer/theme_base.dart';
+import 'package:qooty/values/constants.dart';
 
 enum ColorPlate {
   qootyWhite,
@@ -8,8 +9,6 @@ enum ColorPlate {
   whiteInBlack,
   greyInWhite,
   whiteInGrey,
-  greyInBlack,
-  blackInGrey,
   blackInYellow,
   yellowInBlack,
   blackInOrange,
@@ -25,22 +24,20 @@ class ColorTwin {
   ColorTwin(this.first, this.second);
 }
 
-extension ColorTwins on ColorPlate {
+extension ColorPlateExtension on ColorPlate {
   static final names = {
-    ColorPlate.qootyWhite:  'Qooty White',
-    ColorPlate.qootyBlue:  'Qooty Blue',
+    ColorPlate.qootyWhite: 'Qooty White',
+    ColorPlate.qootyBlue: 'Qooty Blue',
     ColorPlate.blackInWhite: 'Classic',
     ColorPlate.whiteInBlack: 'Inversed',
-    ColorPlate.greyInWhite:  'Grite',
-    ColorPlate.whiteInGrey:  'Whiey',
-    ColorPlate.greyInBlack: 'Grack',
-    ColorPlate.blackInGrey: 'Blay',
+    ColorPlate.greyInWhite: 'Grite',
+    ColorPlate.whiteInGrey: 'Whiey',
     ColorPlate.blackInYellow: 'Blow',
     ColorPlate.yellowInBlack: 'Yelack',
     ColorPlate.blackInOrange: 'Blange',
     ColorPlate.orangeInBlack: 'Orack',
-    ColorPlate.pinkInWhite:  'Pite',
-    ColorPlate.whiteInPink:  'Whink',
+    ColorPlate.pinkInWhite: 'Pite',
+    ColorPlate.whiteInPink: 'Whink',
   };
   static final twins = {
     ColorPlate.qootyWhite: ColorTwin(Colors.blue[900], Colors.white),
@@ -49,8 +46,6 @@ extension ColorTwins on ColorPlate {
     ColorPlate.whiteInBlack: ColorTwin(Colors.white, Colors.black),
     ColorPlate.greyInWhite: ColorTwin(Colors.grey[800], Colors.white),
     ColorPlate.whiteInGrey: ColorTwin(Colors.white, Colors.grey[800]),
-    ColorPlate.greyInBlack: ColorTwin(Colors.grey[200], Colors.black),
-    ColorPlate.blackInGrey: ColorTwin(Colors.black, Colors.grey[200]),
     ColorPlate.blackInYellow: ColorTwin(Colors.black, Colors.yellow[200]),
     ColorPlate.yellowInBlack: ColorTwin(Colors.yellow, Colors.black),
     ColorPlate.blackInOrange: ColorTwin(Colors.black, Colors.orange[300]),
@@ -66,8 +61,6 @@ extension ColorTwins on ColorPlate {
     ColorPlate.whiteInBlack: ThemeBase.dark,
     ColorPlate.greyInWhite: ThemeBase.light,
     ColorPlate.whiteInGrey: ThemeBase.light,
-    ColorPlate.greyInBlack: ThemeBase.dark,
-    ColorPlate.blackInGrey: ThemeBase.dark,
     ColorPlate.blackInYellow: ThemeBase.dark,
     ColorPlate.yellowInBlack: ThemeBase.dark,
     ColorPlate.blackInOrange: ThemeBase.dark,
@@ -81,4 +74,8 @@ extension ColorTwins on ColorPlate {
   ColorTwin get colors => twins[this];
 
   ThemeBase get base => bases[this];
+}
+
+ColorPlate getColorPlateByName(String name) {
+  return ColorPlate.values.firstWhere((plate) => plate.name == name, orElse: () => kDefaultColorPlate);
 }

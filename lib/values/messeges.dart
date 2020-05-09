@@ -19,4 +19,6 @@ class Messages {
 
   static const String notConnected =
       'Something wrong 😔\nI cannot load 😢💔\n\nPlease make sure you are connected to the internet 🥺';
+
+  static const String back = 'Back';
 }

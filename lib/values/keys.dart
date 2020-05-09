@@ -15,3 +15,7 @@ class UserKeys {
   static const String deactivated = 'deactivated';
   static const String likes = 'likes';
 }
+
+class LocalStorageKeys {
+  static const String theme = 'theme';
+}

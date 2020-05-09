@@ -21,7 +21,9 @@ class AuthService {
     }
   }
 
-  static Stream<User> get user => _auth.onAuthStateChanged.map((u) => u.uid).asyncMap(DataManager.registerUser);
+  static Stream<User> get user => _auth.onAuthStateChanged.map((u) {
+    return u != null? u.uid : null;
+  }).asyncMap(DataManager.registerUser);
 
   static Future<void> signOut() async {
     _user = null;

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:qooty/designer/color_plate.dart';
 import 'package:qooty/designer/theme_builder.dart';
+import 'package:qooty/services/local_storage_service.dart';
 import 'package:qooty/values/constants.dart';
+import 'package:qooty/values/keys.dart';
 
 class DesignNotifier extends ChangeNotifier {
   double fontSize = kDefaultFontSize;
@@ -11,6 +13,16 @@ class DesignNotifier extends ChangeNotifier {
   TextAlign notificationsAlign = TextAlign.center;
   ColorTwin colors = kDefaultColorPlate.colors;
   ThemeData theme = kDefaultTheme;
+
+  DesignNotifier() {
+    setColors();
+  }
+
+  Future<void> setColors() async {
+    final themeName = await LocalStorageService.getString(key: LocalStorageKeys.theme);
+    colors = getColorPlateByName(themeName).colors;
+    notifyListeners();
+  }
 
   void increaseFontSize() {
     if (fontSize < kMaxFontSize) fontSize += kFontSizeStep;
@@ -30,9 +42,10 @@ class DesignNotifier extends ChangeNotifier {
   void updateTheme({
     @required ColorPlate plate,
     double fontSize = kDefaultFontSize,
-  }) {
+  }) async {
     colors = plate.colors;
     theme = ThemeBuilder.build(plate: plate, fontSize: fontSize);
+    await LocalStorageService.setString(key: LocalStorageKeys.theme, value: plate.name);
     notifyListeners();
   }
 
@@ -49,9 +62,9 @@ class DesignNotifier extends ChangeNotifier {
   // ===================================================================================================================
   // Helpers:
 
-  get textStyle => theme.textTheme.bodyText2.copyWith(fontSize: fontSize);
+  get textStyle => theme.textTheme.bodyText2.copyWith(fontSize: fontSize, color: colors.first);
 
-  get textStyler => theme.textTheme.bodyText2.copyWith(fontSize: fontSize).copyWith;
+  get textStyler => theme.textTheme.bodyText2.copyWith(fontSize: fontSize, color: colors.first).copyWith;
 
   Icon smallICon(IconData icon) => Icon(icon, size: smallIconSize, color: colors.first);
 

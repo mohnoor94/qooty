@@ -17,6 +17,7 @@ dependencies:
   cloud_firestore: ^0.13.5
   flutter_spinkit: ^4.1.2
   share: ^0.6.4
+  shared_preferences: ^0.5.7+1
 
 dev_dependencies:
   flutter_test:
