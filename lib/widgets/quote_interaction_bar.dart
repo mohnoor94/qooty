@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:qooty/helpers/ui_helpers.dart';
-import 'package:qooty/notifiers/design_notifier.dart';
+import 'package:qooty/designer/ui_utils.dart';
 import 'package:qooty/notifiers/quotes_notifier.dart';
 import 'package:qooty/values/messeges.dart';
 import 'package:qooty/widgets/hideable_icon.dart';
@@ -29,7 +28,7 @@ class _QuoteInteractionBarState extends State<QuoteInteractionBar> {
           tooltip: Messages.copy,
           onPressed: () {
             Clipboard.setData(ClipboardData(text: quotesNotifier.quote.toString()));
-            UiHelpers.info(
+            showInfo(
               context: context,
               text: Messages.copied,
             );
@@ -41,7 +40,7 @@ class _QuoteInteractionBarState extends State<QuoteInteractionBar> {
           onPressed: () async {
             await quotesNotifier.toggleLike();
             setState(() => _isLiked = quotesNotifier.isLiked);
-            UiHelpers.info(
+            showInfo(
               context: context,
               text: _isLiked ? Messages.addedToLikes : Messages.removedFromLikes,
             );

@@ -6,7 +6,7 @@ import 'package:qooty/models/user.dart';
 import 'package:qooty/notifiers/app_state.dart';
 import 'package:qooty/notifiers/design_notifier.dart';
 import 'package:qooty/notifiers/quotes_notifier.dart';
-import 'package:qooty/values/styles.dart';
+import 'package:qooty/values/constants.dart';
 import 'package:qooty/widgets/app_bar.dart';
 import 'package:qooty/widgets/bottom_nav_bar.dart';
 import 'package:qooty/widgets/font_controller_bar.dart';
@@ -47,14 +47,14 @@ class _QuotesScreenState extends State<QuotesScreen> {
         clipper: RightDrawerClipper(),
         child: MenuDrawer(),
       ),
-      bottomNavigationBar: BottomNavBar(onTap: appState.setPageByIndex),
+      bottomNavigationBar: BottomNavBar(),
       backgroundColor: designer.colors.second,
       body: Builder(
         builder: (BuildContext context) => SafeArea(
           child: DefaultTextStyle(
             style: designer.textStyle,
             child: Container(
-              padding: Styles.quotesScreenPadding,
+              padding: kDefaultScreenPadding,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -62,14 +62,14 @@ class _QuotesScreenState extends State<QuotesScreen> {
                   FontControllerBar(),
                   // TODO: Update this MESS!!!
                   Expanded(
-                    child: appState.page == Page.quote
+                    child: appState.page == HomePage.quote
                         ? _dataLoaded ? QuoteView(quote: quotes.quote, onTap: quotes.next) : Loading()
                         : ListView.builder(
                             itemCount: quotes.likes.length,
                             itemBuilder: (_, index) => QuoteListItem(quote: quotes.likes[index]),
                           ),
                   ),
-                  appState.page == Page.quote && _dataLoaded ? QuoteInteractionBar() : Container(),
+                  appState.page == HomePage.quote && _dataLoaded ? QuoteInteractionBar() : Container(),
                 ],
               ),
             ),

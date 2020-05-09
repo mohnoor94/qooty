@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:qooty/designer/color_plate.dart';
-import 'package:qooty/designer/theme_base.dart';
 import 'package:qooty/designer/theme_builder.dart';
 import 'package:qooty/values/constants.dart';
 
@@ -9,7 +8,7 @@ class DesignNotifier extends ChangeNotifier {
   bool focusMode = false;
   double smallIconSize = kSmallIconSize;
   double mediumIconSize = kMediumIconSize;
-  TextAlign notificationsAlign = TextAlign.right;
+  TextAlign notificationsAlign = TextAlign.center;
   ColorTwin colors = kDefaultColorPlate.colors;
   ThemeData theme = kDefaultTheme;
 
@@ -29,12 +28,11 @@ class DesignNotifier extends ChangeNotifier {
   }
 
   void updateTheme({
-    @required ThemeBase base,
     @required ColorPlate plate,
-    @required double fontSize,
+    double fontSize = kDefaultFontSize,
   }) {
     colors = plate.colors;
-    theme = ThemeBuilder.build(base: base, plate: plate, fontSize: fontSize);
+    theme = ThemeBuilder.build(plate: plate, fontSize: fontSize);
     notifyListeners();
   }
 
@@ -51,16 +49,19 @@ class DesignNotifier extends ChangeNotifier {
   // ===================================================================================================================
   // Helpers:
 
-  get textStyle => theme.textTheme.display1.copyWith(fontSize: fontSize);
+  get textStyle => theme.textTheme.bodyText2.copyWith(fontSize: fontSize);
 
-  get textStyler => theme.textTheme.display1.copyWith(fontSize: fontSize).copyWith;
+  get textStyler => theme.textTheme.bodyText2.copyWith(fontSize: fontSize).copyWith;
 
   Icon smallICon(IconData icon) => Icon(icon, size: smallIconSize, color: colors.first);
+
   Icon mediumIcon(IconData icon) => Icon(icon, size: mediumIconSize, color: colors.first);
 
   Icon invertedSmallICon(IconData icon) => Icon(icon, size: smallIconSize, color: colors.second);
+
   Icon invertedMediumIcon(IconData icon) => Icon(icon, size: mediumIconSize, color: colors.second);
 
   Icon uncoloredSmallICon(IconData icon) => Icon(icon, size: smallIconSize);
+
   Icon uncoloredMediumIcon(IconData icon) => Icon(icon, size: mediumIconSize);
 }

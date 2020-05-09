@@ -6,6 +6,7 @@ import 'package:qooty/models/quote.dart';
 import 'package:qooty/services/data_manager.dart';
 
 class QuotesNotifier extends ChangeNotifier {
+  static Random _random = Random();
   static int _current = 0;
   static List<Quote> _quotes = [];
 
@@ -25,7 +26,7 @@ class QuotesNotifier extends ChangeNotifier {
   }
 
   void next() {
-    _current = Random().nextInt(_quotes.length);
+    _current = _random.nextInt(_quotes.length);
     notifyListeners();
   }
 

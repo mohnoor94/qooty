@@ -5,13 +5,12 @@ import 'package:qooty/values/constants.dart';
 
 class ThemeBuilder {
   static ThemeData build({
-    @required ThemeBase base,
     @required ColorPlate plate,
-    @required double fontSize,
+    double fontSize = kDefaultFontSize,
   }) {
     assert(fontSize >= kMinFontSize && fontSize <= kMaxFontSize);
 
-    return base.value.copyWith(
+    return plate.base.value.copyWith(
       canvasColor: plate.colors.first,
       accentColor: plate.colors.first,
       primaryColor: plate.colors.second,
@@ -19,7 +18,7 @@ class ThemeBuilder {
       primaryColorDark: plate.colors.second,
       backgroundColor: plate.colors.second,
       textTheme: TextTheme(
-        display1: TextStyle(
+        bodyText2: TextStyle(
           fontSize: fontSize,
         ),
       ).apply(

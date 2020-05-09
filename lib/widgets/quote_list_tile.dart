@@ -30,7 +30,7 @@ class QuoteListItem extends StatelessWidget {
             splashColor: designer.colors.first.withOpacity(0.2),
             onTap: () {
               quotes.setQuote(quote);
-              appState.setPage(Page.quote);
+              appState.setPage(HomePage.quote);
             },
             child: Text(
               quote.text,

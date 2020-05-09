@@ -49,7 +49,7 @@ class User {
       email: snapshot.data[UserKeys.email],
       twitter: snapshot.data[UserKeys.twitter],
       deactivated: snapshot.data[UserKeys.deactivated],
-      likes: insureInts(snapshot.data[UserKeys.likes]),
+      likes: assureInts(snapshot.data[UserKeys.likes]),
     );
   }
 

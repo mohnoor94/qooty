@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:qooty/designer/color_plate.dart';
-import 'package:qooty/designer/theme_base.dart';
 import 'package:qooty/designer/theme_builder.dart';
 import 'package:qooty/notifiers/app_state.dart';
 
@@ -21,12 +20,14 @@ const double kBigIconSize = 50;
 const double kBottomNavBarHeight = 50;
 
 // Themes
-const ColorPlate kDefaultColorPlate = ColorPlate.blackInOrange;
+const ColorPlate kDefaultColorPlate = ColorPlate.qootyBlue;
 final ThemeData kDefaultTheme = ThemeBuilder.build(
-  base: ThemeBase.light,
   plate: kDefaultColorPlate,
   fontSize: kDefaultFontSize,
 );
 
 // App State
-const Page kDefaultPage = Page.quote;
+const HomePage kDefaultPage = HomePage.quote;
+
+// Styles
+const kDefaultScreenPadding = EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 40.0);
