@@ -15,7 +15,7 @@ class QootyAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final designer = Provider.of<DesignNotifier>(context);
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: getBarItems(context: context, designer: designer),
     );
   }
@@ -52,7 +52,7 @@ class QootyAppBar extends StatelessWidget {
     return Expanded(
       child: Text(
         Messages.appName,
-        textAlign: TextAlign.center,
+        textAlign: TextAlign.start,
         style: designer.textStyler(fontSize: kDefaultFontSize),
       ),
     );

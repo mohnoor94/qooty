@@ -30,4 +30,4 @@ final ThemeData kDefaultTheme = ThemeBuilder.build(
 const HomePage kDefaultPage = HomePage.quote;
 
 // Styles
-const kDefaultScreenPadding = EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 40.0);
+const kDefaultScreenPadding = EdgeInsets.all(20.0);

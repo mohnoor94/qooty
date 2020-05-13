@@ -8,6 +8,7 @@ enum HomePage {
 
 class AppState extends ChangeNotifier {
   HomePage page = kDefaultPage;
+  AppState(): page = kDefaultPage;
 
   void setPageByIndex(int index) {
     page = HomePage.values[index];
@@ -18,4 +19,6 @@ class AppState extends ChangeNotifier {
     this.page = page;
     notifyListeners();
   }
+
+  bool get isQuotePage => page == HomePage.quote;
 }

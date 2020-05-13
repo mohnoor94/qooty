@@ -20,7 +20,7 @@ class _QuoteInteractionBarState extends State<QuoteInteractionBar> {
     final quotesNotifier = Provider.of<QuotesNotifier>(context);
     _isLiked = quotesNotifier.isLiked;
 
-    return Row(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         HideableIcon(

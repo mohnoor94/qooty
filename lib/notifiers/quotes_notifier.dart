@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
+import 'package:qooty/helpers/utils.dart';
 import 'package:qooty/models/quote.dart';
 import 'package:qooty/services/data_manager.dart';
 
@@ -35,16 +36,19 @@ class QuotesNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
-  Quote get quote => _quotes[_current];
+  Quote get quote => _safelyReturn(() => _quotes[_current], () => Quote.dummy());
 
-  String get text => _quotes[_current].text;
+  String get text => _safelyReturn(() => _quotes[_current].text, () => '');
 
-  String get writerName => _quotes[_current].writer;
+  String get writerName => _safelyReturn(() => _quotes[_current].writer, () => '');
 
-  bool get isLiked => _quotes[_current].liked;
+  bool get isLiked => _safelyReturn(() => _quotes[_current].liked, () => false);
 
   Future<bool> toggleLike() async {
     await DataManager.updateLikes(quote);
     return _quotes[_current].toggelLike();
   }
+
+  T _safelyReturn<T>(T Function() safeValueProvider, T Function() defaultValueProvider) =>
+      safelyReturn(() => _quotes.isNotEmpty, safeValueProvider, defaultValueProvider);
 }

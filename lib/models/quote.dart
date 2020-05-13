@@ -14,6 +14,12 @@ class Quote {
   })  : writer = writer == null ? 'Unknown' : writer,
         liked = false;
 
+  Quote.dummy()
+      : id = -1,
+        text = '',
+        writer = '',
+        liked = false;
+
   static Quote fromDocumentSnapshot(DocumentSnapshot snapshot) {
     return snapshot == null || snapshot.data == null
         ? null

@@ -10,11 +10,8 @@ class FontControllerBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final designer = Provider.of<DesignNotifier>(context);
     return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
-        Expanded(
-          child: SizedBox(),
-        ),
         HideableIcon(
           icon: CupertinoIcons.minus_circled,
           tooltip: Messages.decreaseFontSize,
